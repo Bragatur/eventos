@@ -163,6 +163,12 @@
   </header>
   <main>
     <div class="card">
+      <img src="https://raw.githubusercontent.com/Bragatur/eventos/refs/heads/main/agenda_cultural.jpg" alt="Agenda Cultural Braga">
+      <h2>Agenda Cultural de Braga</h2>
+      <p id="ac-text">Atividades culturais mensais da cidade (PDF).</p>
+      <a id="ac-btn" href="https://www.cm-braga.pt/pt/1006/home/agenda-cultural" target="_blank" rel="noopener">Descarregar PDF</a>
+    </div>
+    <div class="card">
       <img src="https://raw.githubusercontent.com/Bragatur/eventos/refs/heads/main/forum.jpg" alt="Theatro Circo">
       <h2>Theatro Circo</h2>
       <p id="tc-text">Concertos, teatro e grandes espetáculos.</p>
@@ -173,12 +179,6 @@
       <h2>gnration</h2>
       <p id="gn-text">Música, arte contemporânea e tecnologia.</p>
       <a id="gn-btn" href="https://gnration.pt/agenda/" target="_blank" rel="noopener">Ver Agenda</a>
-    </div>
-    <div class="card">
-      <img src="https://raw.githubusercontent.com/Bragatur/eventos/refs/heads/main/agenda_cultural.jpg" alt="Agenda Cultural Braga">
-      <h2>Agenda Cultural de Braga</h2>
-      <p id="ac-text">Atividades culturais mensais da cidade (PDF).</p>
-      <a id="ac-btn" href="https://www.cm-braga.pt/pt/1006/home/agenda-cultural" target="_blank" rel="noopener">Descarregar PDF</a>
     </div>
     <div class="card">
       <img src="https://raw.githubusercontent.com/Bragatur/eventos/refs/heads/main/forum.jpg" alt="Forum Braga">
@@ -264,7 +264,6 @@
       }
     }
 
-    // Auto-detect browser language on load
     document.addEventListener('DOMContentLoaded', () => {
       const userLang = navigator.language.slice(0, 2);
       setLanguage(userLang);
