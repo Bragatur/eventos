@@ -15,6 +15,7 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      align-items: center;
     }
     body::before {
       content: "";
@@ -23,12 +24,19 @@
       background: rgba(0, 0, 0, 0.6);
       z-index: -1;
     }
+    header, main, footer {
+      width: 100%;
+      max-width: 1200px;
+      padding: 1rem;
+      box-sizing: border-box;
+      animation: fadeInUp 1s ease forwards;
+      opacity: 0;
+    }
     header {
       background-color: rgba(134, 13, 30, 0.85);
-      padding: 2rem 1rem 1rem;
       text-align: center;
       box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-      width: 100%;
+      border-radius: 10px;
     }
     header h1 {
       margin: 0;
@@ -58,34 +66,37 @@
     .lang-switch img:hover {
       border: 2px solid #fff;
     }
+
     main {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 1.2rem;
-      padding: 1rem;
-      width: 100%;
-      max-width: 960px;
-      box-sizing: border-box;
-      margin: 0 auto;
+      gap: 1rem;
+      margin-top: 1rem;
     }
+
     .card {
       background-color: rgba(255, 255, 255, 0.1);
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
       padding: 1rem;
       text-align: center;
-      transition: transform 0.3s ease, background-color 0.3s ease;
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
       color: #fff;
-      flex: 1 1 240px;
-      max-width: 260px;
+      flex: 1 1 calc(25% - 1rem);
+      max-width: calc(25% - 1rem);
+      box-sizing: border-box;
+      margin-bottom: 1rem;
+      animation: fadeInUp 0.8s ease forwards;
+      opacity: 0;
     }
+
     .card:hover {
       transform: translateY(-5px);
       background-color: rgba(255, 255, 255, 0.15);
     }
+
     .card img {
       width: 90px;
       height: 90px;
@@ -96,16 +107,19 @@
       background: rgba(255,255,255,0.15);
       padding: 6px;
     }
+
     .card h2 {
       margin: 0.4rem 0;
       font-size: 1.2rem;
       color: #ffe5e5;
     }
+
     .card p {
       font-size: 0.95rem;
       margin-bottom: 0.8rem;
       color: #eee;
     }
+
     .card a {
       padding: 0.5rem 1rem;
       background-color: #d32f2f;
@@ -115,18 +129,46 @@
       font-weight: 600;
       font-size: 0.9rem;
     }
+
     .card a:hover {
       background-color: #b71c1c;
     }
+
     footer {
       background-color: rgba(0, 0, 0, 0.7);
       color: #ccc;
       text-align: center;
       padding: 1rem;
       font-size: 0.8rem;
-      width: 100%;
       margin-top: auto;
+      border-radius: 10px;
     }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 1023px) {
+      .card {
+        flex: 1 1 calc(33.333% - 1rem);
+        max-width: calc(33.333% - 1rem);
+      }
+    }
+
+    @media (max-width: 767px) {
+      .card {
+        flex: 1 1 calc(50% - 1rem);
+        max-width: calc(50% - 1rem);
+      }
+    }
+
     @media (max-width: 480px) {
       header h1 {
         font-size: 1.4rem;
@@ -135,7 +177,8 @@
         font-size: 0.9rem;
       }
       .card {
-        max-width: 90%;
+        flex: 1 1 100%;
+        max-width: 100%;
       }
     }
   </style>
@@ -151,6 +194,7 @@
       <img src="https://flagcdn.com/w40/gb.png" alt="en" onclick="setLanguage('en')">
     </div>
   </header>
+
   <main>
     <div class="card">
       <img src="https://raw.githubusercontent.com/Bragatur/eventos/refs/heads/main/agenda_cultural.jpg" alt="Agenda Cultural Braga">
@@ -183,81 +227,88 @@
       <a id="ev-btn" href="https://www.espacovita.pt/agenda/" target="_blank" rel="noopener">Ver Agenda</a>
     </div>
   </main>
+
   <footer>
     © 2025 Eventos em Braga. Dados públicos das entidades culturais da cidade.
   </footer>
-<script>
-  const translations = {
-    pt: {
-      title: "Eventos Culturais em Braga",
-      subtitle: "Descubra o que está a acontecer na cidade",
-      "ac-text": "Atividades culturais mensais da cidade (PDF).",
-      "ac-btn": "Descarregar PDF",
-      "tc-text": "Concertos, teatro e grandes espetáculos.",
-      "tc-btn": "Ver Agenda",
-      "gn-text": "Música, arte contemporânea e tecnologia.",
-      "gn-btn": "Ver Agenda",
-      "fb-text": "Eventos de grande escala e espetáculos internacionais.",
-      "fb-btn": "Ver Eventos",
-      "ev-text": "Espetáculos, congressos e eventos diversos.",
-      "ev-btn": "Ver Agenda"
-    },
-    es: {
-      title: "Eventos Culturales en Braga",
-      subtitle: "Descubre lo que está pasando en la ciudad",
-      "ac-text": "Actividades culturales mensuales de la ciudad (PDF).",
-      "ac-btn": "Descargar PDF",
-      "tc-text": "Conciertos, teatro y grandes espectáculos.",
-      "tc-btn": "Ver Agenda",
-      "gn-text": "Música, arte contemporáneo y tecnología.",
-      "gn-btn": "Ver Agenda",
-      "fb-text": "Eventos a gran escala y espectáculos internacionales.",
-      "fb-btn": "Ver Eventos",
-      "ev-text": "Espectáculos, congresos y eventos diversos.",
-      "ev-btn": "Ver Agenda"
-    },
-    fr: {
-      title: "Événements Culturels à Braga",
-      subtitle: "Découvrez ce qui se passe en ville",
-      "ac-text": "Activités culturelles mensuelles de la ville (PDF).",
-      "ac-btn": "Télécharger le PDF",
-      "tc-text": "Concerts, théâtre et grands spectacles.",
-      "tc-btn": "Voir l'agenda",
-      "gn-text": "Musique, art contemporain et technologie.",
-      "gn-btn": "Voir l'agenda",
-      "fb-text": "Événements de grande envergure et spectacles internationaux.",
-      "fb-btn": "Voir les événements",
-      "ev-text": "Spectacles, congrès et événements divers.",
-      "ev-btn": "Voir l'agenda"
-    },
-    en: {
-      title: "Cultural Events in Braga",
-      subtitle: "Discover what's happening in the city",
-      "ac-text": "Monthly cultural activities in the city (PDF).",
-      "ac-btn": "Download PDF",
-      "tc-text": "Concerts, theatre and major performances.",
-      "tc-btn": "View Agenda",
-      "gn-text": "Music, contemporary art and technology.",
-      "gn-btn": "View Agenda",
-      "fb-text": "Large-scale events and international shows.",
-      "fb-btn": "View Events",
-      "ev-text": "Shows, conferences and various events.",
-      "ev-btn": "View Agenda"
-    }
-  };
 
-  function setLanguage(lang) {
-    const dict = translations[lang] || translations['en'];
-    for (const key in dict) {
-      const el = document.getElementById(key);
-      if (el) el.textContent = dict[key];
-    }
-  }
+  <script>
+    const translations = {
+      pt: {
+        title: "Eventos Culturais em Braga",
+        subtitle: "Descubra o que está a acontecer na cidade",
+        "ac-text": "Atividades culturais mensais da cidade (PDF).",
+        "ac-btn": "Descarregar PDF",
+        "tc-text": "Concertos, teatro e grandes espetáculos.",
+        "tc-btn": "Ver Agenda",
+        "gn-text": "Música, arte contemporânea e tecnologia.",
+        "gn-btn": "Ver Agenda",
+        "fb-text": "Eventos de grande escala e espetáculos internacionais.",
+        "fb-btn": "Ver Eventos",
+        "ev-text": "Espetáculos, congressos e eventos diversos.",
+        "ev-btn": "Ver Agenda"
+      },
+      es: {
+        title: "Eventos Culturales en Braga",
+        subtitle: "Descubre lo que está pasando en la ciudad",
+        "ac-text": "Actividades culturales mensuales de la ciudad (PDF).",
+        "ac-btn": "Descargar PDF",
+        "tc-text": "Conciertos, teatro y grandes espectáculos.",
+        "tc-btn": "Ver Agenda",
+        "gn-text": "Música, arte contemporáneo y tecnología.",
+        "gn-btn": "Ver Agenda",
+        "fb-text": "Eventos a gran escala y espectáculos internacionales.",
+        "fb-btn": "Ver Eventos",
+        "ev-text": "Espectáculos, congresos y eventos diversos.",
+        "ev-btn": "Ver Agenda"
+      },
+      fr: {
+        title: "Événements Culturels à Braga",
+        subtitle: "Découvrez ce qui se passe en ville",
+        "ac-text": "Activités culturelles mensuelles de la ville (PDF).",
+        "ac-btn": "Télécharger le PDF",
+        "tc-text": "Concerts, théâtre et grands spectacles.",
+        "tc-btn": "Voir l'agenda",
+        "gn-text": "Musique, art contemporain et technologie.",
+        "gn-btn": "Voir l'agenda",
+        "fb-text": "Événements de grande envergure et spectacles internationaux.",
+        "fb-btn": "Voir les événements",
+        "ev-text": "Spectacles, congrès et événements divers.",
+        "ev-btn": "Voir l'agenda"
+      },
+      en: {
+        title: "Cultural Events in Braga",
+        subtitle: "Discover what's happening in the city",
+        "ac-text": "Monthly cultural activities in the city (PDF).",
+        "ac-btn": "Download PDF",
+        "tc-text": "Concerts, theatre and major performances.",
+        "tc-btn": "View Agenda",
+        "gn-text": "Music, contemporary art and technology.",
+        "gn-btn": "View Agenda",
+        "fb-text": "Large-scale events and international shows.",
+        "fb-btn": "View Events",
+        "ev-text": "Shows, conferences and various events.",
+        "ev-btn": "View Agenda"
+      }
+    };
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const userLang = navigator.language.slice(0, 2);
-    setLanguage(userLang);
-  });
-</script>
+    function setLanguage(lang) {
+      const dict = translations[lang] || translations['en'];
+      for (const key in dict) {
+        const el = document.getElementById(key);
+        if (el) el.textContent = dict[key];
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const userLang = navigator.language.slice(0, 2);
+      setLanguage(userLang);
+
+      const cards = document.querySelectorAll('.card');
+      cards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.15}s`;
+      });
+    });
+  </script>
 </body>
 </html>
