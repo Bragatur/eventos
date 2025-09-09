@@ -171,16 +171,10 @@
       <a id="ac-btn" href="https://drive.google.com/file/d/1j4laU9QfGi6E-Zvntt4nLmcrSOVCjjMi/view?usp=sharing" target="_blank" rel="noopener">Descarregar PDF</a>
     </div>
     <div class="card">
-      <img src="https://raw.githubusercontent.com/Bragatur/eventos/refs/heads/main/noite_branca.jpg" alt="Noite Branca de Braga 2025">
-      <h2>Noite Branca 2025</h2>
-      <p id="nb-text">O maior evento cultural e artístico ao ar livre da cidade.</p>
-      <a id="nb-btn" href="https://noitebrancabraga.com/" target="_blank">Saber Mais</a>
-    </div>
-    <div class="card">
       <img src="https://raw.githubusercontent.com/Bragatur/eventos/refs/heads/main/verde-cool.jpg" alt="Verde Cool 2025">
       <h2>Verde Cool 2025</h2>
       <p id="vc-text">Festival de sustentabilidade e gastronomia local.</p>
-      <a id="vc-btn" href="https://tastebraga.com/verde-cool-2025/" target="_blank">Saber Mais</a>
+      <a id="vc-btn" href="#" target="_blank">Saber Mais</a>
     </div>
     <div class="card">
       <img src="https://raw.githubusercontent.com/Bragatur/eventos/refs/heads/main/theatro_circo.jpg" alt="Theatro Circo">
@@ -219,7 +213,6 @@
         subtitle: "Descubra o que está a acontecer na cidade",
         cards: [
           { p: "Atividades culturais mensais da cidade (PDF).", a: "Descarregar PDF" },
-          { p: "O maior evento cultural e artístico ao ar livre da cidade.", a: "Saber Mais" },
           { p: "Festival de sustentabilidade e gastronomia local.", a: "Saber Mais" },
           { p: "Concertos, teatro e grandes espetáculos.", a: "Ver Agenda" },
           { p: "Música, arte contemporânea e tecnologia.", a: "Ver Agenda" },
@@ -232,7 +225,6 @@
         subtitle: "Descubre lo que está pasando en la ciudad",
         cards: [
           { p: "Actividades culturales mensuales de la ciudad (PDF).", a: "Descargar PDF" },
-          { p: "El mayor evento cultural y artístico al aire libre de la ciudad.", a: "Saber Más" },
           { p: "Festival de sostenibilidad y gastronomía local.", a: "Saber Más" },
           { p: "Conciertos, teatro y grandes espectáculos.", a: "Ver Agenda" },
           { p: "Música, arte contemporáneo y tecnología.", a: "Ver Agenda" },
@@ -245,7 +237,6 @@
         subtitle: "Découvrez ce qui se passe en ville",
         cards: [
           { p: "Activités culturelles mensuelles de la ville (PDF).", a: "Télécharger le PDF" },
-          { p: "Le plus grand événement culturel et artistique en plein air de la ville.", a: "En savoir plus" },
           { p: "Festival de durabilité et gastronomie locale.", a: "En savoir plus" },
           { p: "Concerts, théâtre et grands spectacles.", a: "Voir l'agenda" },
           { p: "Musique, art contemporain et technologie.", a: "Voir l'agenda" },
@@ -258,7 +249,6 @@
         subtitle: "Discover what's happening in the city",
         cards: [
           { p: "Monthly cultural activities in the city (PDF).", a: "Download PDF" },
-          { p: "The city's largest open-air cultural and artistic event.", a: "Learn More" },
           { p: "Sustainability and local gastronomy festival.", a: "Learn More" },
           { p: "Concerts, theatre and major performances.", a: "View Agenda" },
           { p: "Music, contemporary art and technology.", a: "View Agenda" },
@@ -266,6 +256,14 @@
           { p: "Shows, conferences and various events.", a: "View Agenda" }
         ]
       }
+    };
+
+    // Links dinâmicos para Verde Cool
+    const verdeLinks = {
+      pt: "https://tastebraga.com/campanhas/verde-cool-2025/",
+      es: "https://tastebraga.com/es/campanas/verde-cool-2025/",
+      fr: "https://tastebraga.com/fr/campagnes/verde-cool-2025/",
+      en: "https://tastebraga.com/en/campaigns/verde-cool-2025/"
     };
 
     function setLanguage(lang) {
@@ -282,6 +280,10 @@
           a.textContent = t.cards[i].a;
         }
       });
+
+      // Atualizar link do Verde Cool
+      const verdeBtn = document.getElementById("vc-btn");
+      verdeBtn.href = verdeLinks[lang] || verdeLinks['en'];
     }
 
     document.addEventListener('DOMContentLoaded', () => {
