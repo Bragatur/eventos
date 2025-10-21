@@ -145,7 +145,6 @@
       .card { flex: 1 1 100%; max-width: 100%; }
     }
 
-    /* Dropdown de idiomas */
     .lang-dropdown {
       position: fixed;
       bottom: 20px;
@@ -171,7 +170,6 @@
       transition: transform 0.3s ease, background-color 0.3s ease;
     }
     .lang-icon:hover { transform: scale(1.1); background-color: #b71c1c; }
-
     .lang-dropdown .lang-options {
       display: none;
       flex-direction: column;
@@ -229,11 +227,11 @@
       <p>Espetáculos, congressos e eventos diversos.</p>
       <a href="https://www.espacovita.pt/agenda/" target="_blank">Ver Agenda</a>
     </div>
-    <div class="card" id="vc-card">
-      <img src="https://raw.githubusercontent.com/Bragatur/eventos/refs/heads/main/verde-cool.jpg" alt="Verde Cool 2025">
-      <h2>Verde Cool 2025</h2>
-      <p id="vc-text">Festival de sustentabilidade e gastronomia local.</p>
-      <a id="vc-btn" href="#" target="_blank">Saber Mais</a>
+    <div class="card" id="bc-card">
+      <img src="https://raw.githubusercontent.com/Bragatur/eventos/refs/heads/main/bemcomer_25.jpg" alt="Bem Comer 2025">
+      <h2>Bem Comer 2025</h2>
+      <p>Festival gastronómico que celebra o melhor da cozinha bracarense.</p>
+      <a id="bc-btn" href="https://tastebraga.com/campanhas/bem-comer-2025/" target="_blank">Saber Mais</a>
     </div>
   </main>
 
@@ -246,116 +244,117 @@
     <div class="lang-options"></div>
   </div>
 
-  <script>
-    const translations = {
-      pt: { title: "Eventos Culturais em Braga", subtitle: "Descubra o que está a acontecer na cidade", cards: [
-        { p: "Atividades culturais mensais da cidade (PDF).", a: "Descarregar PDF" },
-        { p: "Concertos, teatro e grandes espetáculos.", a: "Ver Agenda" },
-        { p: "Música, arte contemporânea e tecnologia.", a: "Ver Agenda" },
-        { p: "Eventos de grande escala e espetáculos internacionais.", a: "Ver Eventos" },
-        { p: "Espetáculos, congressos e eventos diversos.", a: "Ver Agenda" },
-        { p: "Festival de sustentabilidade e gastronomia local.", a: "Saber Mais" }
-      ]},
-      es: { title: "Eventos Culturales en Braga", subtitle: "Descubre lo que está pasando en la ciudad", cards: [
-        { p: "Actividades culturales mensuales de la ciudad (PDF).", a: "Descargar PDF" },
-        { p: "Conciertos, teatro y grandes espectáculos.", a: "Ver Agenda" },
-        { p: "Música, arte contemporánea y tecnología.", a: "Ver Agenda" },
-        { p: "Eventos a gran escala y espectáculos internacionales.", a: "Ver Eventos" },
-        { p: "Espectáculos, congresos y eventos diversos.", a: "Ver Agenda" },
-        { p: "Festival de sostenibilidad y gastronomía local.", a: "Saber Más" }
-      ]},
-      fr: { title: "Événements Culturels à Braga", subtitle: "Découvrez ce qui se passe en ville", cards: [
-        { p: "Activités culturelles mensuelles de la ville (PDF).", a: "Télécharger le PDF" },
-        { p: "Concerts, théâtre et grands spectacles.", a: "Voir l'agenda" },
-        { p: "Musique, art contemporain et technologie.", a: "Voir l'agenda" },
-        { p: "Événements de grande envergure et spectacles internationaux.", a: "Voir les événements" },
-        { p: "Spectacles, congrès et divers événements.", a: "Voir l'agenda" },
-        { p: "Festival de durabilité et gastronomie locale.", a: "En savoir plus" }
-      ]},
-      en: { title: "Cultural Events in Braga", subtitle: "Discover what's happening in the city", cards: [
-        { p: "Monthly cultural activities in the city (PDF).", a: "Download PDF" },
-        { p: "Concerts, theatre and major performances.", a: "View Agenda" },
-        { p: "Music, contemporary art and technology.", a: "View Agenda" },
-        { p: "Large-scale events and international shows.", a: "View Events" },
-        { p: "Shows, conferences and various events.", a: "View Agenda" },
-        { p: "Sustainability and local gastronomy festival.", a: "Learn More" }
-      ]}
-    };
+<script>
+  const translations = {
+    pt: { title: "Eventos Culturais em Braga", subtitle: "Descubra o que está a acontecer na cidade", cards: [
+      { p: "Atividades culturais mensais da cidade (PDF).", a: "Descarregar PDF" },
+      { p: "Concertos, teatro e grandes espetáculos.", a: "Ver Agenda" },
+      { p: "Música, arte contemporânea e tecnologia.", a: "Ver Agenda" },
+      { p: "Eventos de grande escala e espetáculos internacionais.", a: "Ver Eventos" },
+      { p: "Espetáculos, congressos e eventos diversos.", a: "Ver Agenda" },
+      { p: "Descubra os sabores e tradições gastronómicas que tornam Braga única.", a: "Saber Mais" }
+    ]},
+    es: { title: "Eventos Culturales en Braga", subtitle: "Descubre lo que está pasando en la ciudad", cards: [
+      { p: "Actividades culturales mensuales de la ciudad (PDF).", a: "Descargar PDF" },
+      { p: "Conciertos, teatro y grandes espectáculos.", a: "Ver Agenda" },
+      { p: "Música, arte contemporánea y tecnología.", a: "Ver Agenda" },
+      { p: "Eventos a gran escala y espectáculos internacionales.", a: "Ver Eventos" },
+      { p: "Espectáculos, congresos y eventos diversos.", a: "Ver Agenda" },
+      { p: "Descubra los sabores y tradiciones gastronómicas que hacen única a Braga.", a: "Ver programa" }
+    ]},
+    fr: { title: "Événements Culturels à Braga", subtitle: "Découvrez ce qui se passe en ville", cards: [
+      { p: "Activités culturelles mensuelles de la ville (PDF).", a: "Télécharger le PDF" },
+      { p: "Concerts, théâtre et grands spectacles.", a: "Voir l'agenda" },
+      { p: "Musique, art contemporain et technologie.", a: "Voir l'agenda" },
+      { p: "Événements de grande envergure et spectacles internationaux.", a: "Voir les événements" },
+      { p: "Spectacles, congrès et divers événements.", a: "Voir l'agenda" },
+      { p: "Découvrez les saveurs et traditions gastronomiques qui rendent Braga unique.", a: "En savoir plus" }
+    ]},
+    en: { title: "Cultural Events in Braga", subtitle: "Discover what's happening in the city", cards: [
+      { p: "Monthly cultural activities in the city (PDF).", a: "Download PDF" },
+      { p: "Concerts, theatre and major performances.", a: "View Agenda" },
+      { p: "Music, contemporary art and technology.", a: "View Agenda" },
+      { p: "Large-scale events and international shows.", a: "View Events" },
+      { p: "Shows, conferences and various events.", a: "View Agenda" },
+      { p: "Discover the flavors and gastronomic traditions that make Braga unique.", a: "Learn More" }
+    ]}
+  };
 
-    const verdeLinks = {
-      pt: "https://tastebraga.com/campanhas/verde-cool-2025/",
-      es: "https://tastebraga.com/es/campanas/verde-cool-2025/",
-      fr: "https://tastebraga.com/fr/campagnes/verde-cool-2025/",
-      en: "https://tastebraga.com/en/campaigns/verde-cool-2025/"
-    };
+  const bemComerLinks = {
+    pt: "https://tastebraga.com/campanhas/bem-comer-2025/",
+    es: "https://tastebraga.com/es/campanas/bem-comer-2025/",
+    fr: "https://tastebraga.com/fr/campagnes/bem-comer-2025/",
+    en: "https://tastebraga.com/en/campaigns/bem-comer-2025/"
+  };
 
-    const flagMap = { pt: 'PT', es: 'ES', fr: 'FR', en: 'EN' };
-    const dropdown = document.querySelector('.lang-dropdown');
-    const currentLang = document.getElementById('current-lang');
-    const options = dropdown.querySelector('.lang-options');
+  const flagMap = { pt: 'PT', es: 'ES', fr: 'FR', en: 'EN' };
+  const dropdown = document.querySelector('.lang-dropdown');
+  const currentLang = document.getElementById('current-lang');
+  const options = dropdown.querySelector('.lang-options');
 
-    function renderDropdown(current) {
-      options.innerHTML = '';
-      for (let lang in flagMap) {
-        if (lang !== current) {
-          const div = document.createElement('div');
-          div.className = 'lang-icon';
-          div.textContent = flagMap[lang];
-          div.onclick = () => setLanguage(lang);
-          options.appendChild(div);
-        }
+  function renderDropdown(current) {
+    options.innerHTML = '';
+    for (let lang in flagMap) {
+      if (lang !== current) {
+        const div = document.createElement('div');
+        div.className = 'lang-icon';
+        div.textContent = flagMap[lang];
+        div.onclick = () => setLanguage(lang);
+        options.appendChild(div);
       }
     }
+  }
 
-    currentLang.addEventListener('click', () => { options.classList.toggle('show'); });
+  currentLang.addEventListener('click', () => { options.classList.toggle('show'); });
 
-    function applyLanguage(lang) {
-      const t = translations[lang] || translations['en'];
-      document.getElementById('title').textContent = t.title;
-      document.getElementById('subtitle').textContent = t.subtitle;
+  function applyLanguage(lang) {
+    const t = translations[lang] || translations['en'];
+    document.getElementById('title').textContent = t.title;
+    document.getElementById('subtitle').textContent = t.subtitle;
 
-      const cards = document.querySelectorAll('main .card');
-      cards.forEach((card, i) => {
-        const p = card.querySelector('p');
-        const a = card.querySelector('a');
-        if (p && a && t.cards[i]) {
-          p.textContent = t.cards[i].p;
-          a.textContent = t.cards[i].a;
-        }
-      });
-
-      // links dinâmicos
-      const vcBtn = document.getElementById("vc-btn");
-      if (vcBtn) vcBtn.href = verdeLinks[lang] || verdeLinks['en'];
-      document.getElementById("gnration-btn").href = lang === 'en' ? "https://www.gnration.pt/en/ver-todos/" : "https://www.gnration.pt/ver-todos/";
-      document.getElementById("forum-btn").href = lang === 'en' ? "https://forumbraga.com/Schedule/Schedule" : "https://forumbraga.com/Page/Index/85f38d62-8031-11ea-8ea3-00ff7e645b02";
-    }
-
-    function setLanguage(lang) {
-      currentLang.textContent = flagMap[lang];
-      renderDropdown(lang);
-      options.classList.remove('show');
-      applyLanguage(lang);
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const userLang = navigator.language.slice(0,2);
-      const lang = ['pt','es','fr','en'].includes(userLang) ? userLang : 'en';
-      setLanguage(lang);
-
-      const cards = document.querySelectorAll('main .card');
-      cards.forEach((card, i) => {
-        setTimeout(() => { card.classList.add('show'); }, i * 150);
-      });
-
-      // Remover Verde Cool automaticamente depois de 5 de outubro 2025
-      const today = new Date();
-      const endDate = new Date("2025-10-05T23:59:59");
-      if (today > endDate) {
-        const verdeCard = document.querySelector('#vc-card');
-        if (verdeCard) verdeCard.remove();
+    const cards = document.querySelectorAll('main .card');
+    cards.forEach((card, i) => {
+      const p = card.querySelector('p');
+      const a = card.querySelector('a');
+      if (p && a && t.cards[i]) {
+        p.textContent = t.cards[i].p;
+        a.textContent = t.cards[i].a;
       }
     });
-  </script>
+
+    const bcBtn = document.getElementById("bc-btn") || document.getElementById("bc-btn"); // garante compatibilidade
+    if (bcBtn) bcBtn.href = bemComerLinks[lang] || bemComerLinks['pt'];
+
+    const gnrationBtn = document.getElementById("gnration-btn");
+    if (gnrationBtn) gnrationBtn.href = lang === 'en' ? "https://www.gnration.pt/en/ver-todos/" : "https://www.gnration.pt/ver-todos/";
+    const forumBtn = document.getElementById("forum-btn");
+    if (forumBtn) forumBtn.href = lang === 'en' ? "https://forumbraga.com/Schedule/Schedule" : "https://forumbraga.com/Page/Index/85f38d62-8031-11ea-8ea3-00ff7e645b02";
+  }
+
+  function setLanguage(lang) {
+    currentLang.textContent = flagMap[lang];
+    renderDropdown(lang);
+    options.classList.remove('show');
+    applyLanguage(lang);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const userLang = navigator.language ? navigator.language.slice(0,2) : 'pt';
+    const lang = ['pt','es','fr','en'].includes(userLang) ? userLang : 'en';
+    setLanguage(lang);
+
+    const cards = document.querySelectorAll('main .card');
+    cards.forEach((card, i) => setTimeout(() => card.classList.add('show'), i * 150));
+
+    // Remover Bem Comer após 31 de outubro de 2025
+    const today = new Date();
+    const endDate = new Date("2025-10-31T23:59:59");
+    if (today > endDate) {
+      const bcCard = document.querySelector('#bc-card');
+      if (bcCard) bcCard.remove();
+    }
+  });
+</script>
+
 </body>
 </html>
