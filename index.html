@@ -14,7 +14,6 @@
     body {
       margin: 0;
       font-family: 'Montserrat', sans-serif;
-      /* Já é WebP e usa 'fixed' o que é bom para fundo */
       background: url('https://raw.githubusercontent.com/Bragatur/eventos/refs/heads/main/republic-square.webp') no-repeat center center fixed;
       background-size: cover;
       color: #fff;
@@ -258,7 +257,6 @@
       { p: "Música, arte contemporânea e tecnologia.", a: "Ver Agenda" },
       { p: "Eventos de grande escala e espetáculos internacionais.", a: "Ver Eventos" },
       { p: "Espetáculos, congressos e eventos diversos.", a: "Ver Agenda" },
-      // Descrição do Bem Comer 2025 alterada para ser genérica, como no JS original, mas em PT
       { p: "Descubra os sabores e tradições gastronómicas que tornam Braga única.", a: "Saber Mais" } 
     ]},
     es: { title: "Eventos Culturales en Braga", subtitle: "Descubre lo que está pasando en la ciudad", cards: [
@@ -280,7 +278,7 @@
     en: { title: "Cultural Events in Braga", subtitle: "Discover what's happening in the city", cards: [
       { p: "Monthly cultural activities in the city (PDF).", a: "Download PDF" },
       { p: "Concerts, theatre and major performances.", a: "View Agenda" },
-      { p: "Music, contemporary art and technology.", a: "View Agenda" },
+      { p: "Music, contemporary art and technology.", "a": "View Agenda" },
       { p: "Large-scale events and international shows.", a: "View Events" },
       { p: "Shows, conferences and various events.", a: "View Agenda" },
       { p: "Discover the flavors and gastronomic traditions that make Braga unique.", a: "Learn More" }
@@ -295,13 +293,14 @@
   };
 
   const flagMap = { pt: 'PT', es: 'ES', fr: 'FR', en: 'EN' };
+  const availableLangs = Object.keys(flagMap);
   const dropdown = document.querySelector('.lang-dropdown');
   const currentLang = document.getElementById('current-lang');
   const options = dropdown.querySelector('.lang-options');
 
   function renderDropdown(current) {
     options.innerHTML = '';
-    for (let lang in flagMap) {
+    for (let lang of availableLangs) {
       if (lang !== current) {
         const div = document.createElement('div');
         div.className = 'lang-icon';
@@ -315,7 +314,8 @@
   currentLang.addEventListener('click', () => { options.classList.toggle('show'); });
 
   function applyLanguage(lang) {
-    const t = translations[lang] || translations['pt']; // Fallback para PT
+    // Fallback para EN (Inglês) se a tradução for desconhecida
+    const t = translations[lang] || translations['en']; 
     document.getElementById('title').textContent = t.title;
     document.getElementById('subtitle').textContent = t.subtitle;
 
@@ -330,12 +330,19 @@
     });
 
     const bcBtn = document.getElementById("bc-btn");
-    if (bcBtn) bcBtn.href = bemComerLinks[lang] || bemComerLinks['pt'];
+    // Fallback para o link em Inglês se o link do idioma atual for desconhecido
+    if (bcBtn) bcBtn.href = bemComerLinks[lang] || bemComerLinks['en']; 
 
     const gnrationBtn = document.getElementById("gnration-btn");
+    // Lógica específica do link gnration (PT/EN)
     if (gnrationBtn) gnrationBtn.href = lang === 'en' ? "https://www.gnration.pt/en/ver-todos/" : "https://www.gnration.pt/ver-todos/";
+    
     const forumBtn = document.getElementById("forum-btn");
+    // Lógica específica do link forum (PT/EN)
     if (forumBtn) forumBtn.href = lang === 'en' ? "https://forumbraga.com/Schedule/Schedule" : "https://forumbraga.com/Page/Index/85f38d62-8031-11ea-8ea3-00ff7e645b02";
+    
+    // Atualizar o atributo lang do HTML
+    document.documentElement.lang = lang;
   }
 
   function setLanguage(lang) {
@@ -346,13 +353,12 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-    // OTIMIZAÇÃO 5: Define o idioma inicial explicitamente para 'pt' 
-    // (em vez de usar navigator.language) para garantir consistência.
-    const initialLang = 'pt'; 
+    // Lógica de deteção e fallback de idioma conforme solicitado
+    const userLang = navigator.language ? navigator.language.slice(0,2) : 'en';
+    const initialLang = availableLangs.includes(userLang) ? userLang : 'en'; // Usa 'en' como padrão se não for compatível
     setLanguage(initialLang);
 
     const cards = document.querySelectorAll('main .card');
-    // Aplica o efeito de animação sequencial
     cards.forEach((card, i) => setTimeout(() => card.classList.add('show'), i * 150));
 
     // Remover Bem Comer após 31 de outubro de 2025
