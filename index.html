@@ -77,11 +77,11 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      opacity: 0;
-      transform: translateY(20px);
+      opacity: 0; /* Adicionado para animação */
+      transform: translateY(20px); /* Adicionado para animação */
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .card.show {
+    .card.show { /* Adicionado para animação */
       animation: fadeSlideUp 0.8s forwards;
     }
     .card:hover {
@@ -134,7 +134,7 @@
       margin-top: auto;
       border-radius: 10px;
     }
-    @keyframes fadeSlideUp {
+    @keyframes fadeSlideUp { /* Adicionado para animação */
       0% { opacity: 0; transform: translateY(20px); }
       100% { opacity: 1; transform: translateY(0); }
     }
@@ -233,12 +233,12 @@
       <a href="https://www.espacovita.pt/agenda/" target="_blank">Ver Agenda</a>
     </div>
     <div class="card" id="bc-card">
-      <img src="https://raw.githubusercontent.com/Bragatur/eventos/refs/heads/main/bemcomer_25.jpg" alt="Bem Comer 2025" loading="lazy">
-      <h2>Bem Comer 2025</h2>
-      <p>Festival gastronómico que celebra o melhor da cozinha bracarense.</p>
-      <a id="bc-btn" href="https://tastebraga.com/campanhas/bem-comer-2025/" target="_blank">Saber Mais</a>
+      <img src="https://raw.githubusercontent.com/Bragatur/eventos/refs/heads/main/TARDES%20GULOSOSAS.webp" alt="Tardes Gulosas" loading="lazy">
+      <h2>Tardes Gulosas</h2>
+      <p>Descubra as promoções das Tardes Gulosas em Braga.</p>
+      <a id="bc-btn" href="https://tastebraga.com/campanhas/tardes-gulosas-2025/" target="_blank">Saber Mais</a>
     </div>
-  </main>
+    </main>
 
   <footer>
     © 2025 Município de Braga. Dados públicos das entidades culturais da cidade.
@@ -257,7 +257,8 @@
       { p: "Música, arte contemporânea e tecnologia.", a: "Ver Agenda" },
       { p: "Eventos de grande escala e espetáculos internacionais.", a: "Ver Eventos" },
       { p: "Espetáculos, congressos e eventos diversos.", a: "Ver Agenda" },
-      { p: "Descubra os sabores e tradições gastronómicas que tornam Braga única.", a: "Saber Mais" } 
+      /* ATUALIZADO */
+      { p: "Descubra as promoções das Tardes Gulosas em Braga.", a: "Saber Mais" } 
     ]},
     es: { title: "Eventos Culturales en Braga", subtitle: "Descubre lo que está pasando en la ciudad", cards: [
       { p: "Actividades culturales mensuales de la ciudad (PDF).", a: "Descargar PDF" },
@@ -265,7 +266,8 @@
       { p: "Música, arte contemporánea y tecnología.", a: "Ver Agenda" },
       { p: "Eventos a gran escala y espectáculos internacionales.", a: "Ver Eventos" },
       { p: "Espectáculos, congresos y eventos diversos.", a: "Ver Agenda" },
-      { p: "Descubra los sabores y tradiciones gastronómicas que hacen única a Braga.", a: "Ver programa" }
+      /* ATUALIZADO */
+      { p: "Descubra las promociones de las 'Tardes Gulosas' en Braga.", a: "Ver programa" }
     ]},
     fr: { title: "Événements Culturels à Braga", subtitle: "Découvrez ce qui se passe en ville", cards: [
       { p: "Activités culturelles mensuelles de la ville (PDF).", a: "Télécharger le PDF" },
@@ -273,7 +275,8 @@
       { p: "Musique, art contemporain et technologie.", a: "Voir l'agenda" },
       { p: "Événements de grande envergure et spectacles internationaux.", a: "Voir les événements" },
       { p: "Spectacles, congrès et divers événements.", a: "Voir l'agenda" },
-      { p: "Découvrez les saveurs et traditions gastronomiques qui rendent Braga unique.", a: "En savoir plus" }
+      /* ATUALIZADO */
+      { p: "Découvrez les promotions 'Tardes Gulosas' à Braga.", a: "En savoir plus" }
     ]},
     en: { title: "Cultural Events in Braga", subtitle: "Discover what's happening in the city", cards: [
       { p: "Monthly cultural activities in the city (PDF).", a: "Download PDF" },
@@ -281,15 +284,17 @@
       { p: "Music, contemporary art and technology.", "a": "View Agenda" },
       { p: "Large-scale events and international shows.", a: "View Events" },
       { p: "Shows, conferences and various events.", a: "View Agenda" },
-      { p: "Discover the flavors and gastronomic traditions that make Braga unique.", a: "Learn More" }
+      /* ATUALIZADO */
+      { p: "Discover the 'Tardes Gulosas' promotions in Braga.", a: "Learn More" }
     ]}
   };
 
+  /* LINKS ATUALIZADOS */
   const bemComerLinks = {
-    pt: "https://tastebraga.com/campanhas/bem-comer-2025/",
-    es: "https://tastebraga.com/es/campanas/bem-comer-2025/",
-    fr: "https://tastebraga.com/fr/campagnes/bem-comer-2025/",
-    en: "https://tastebraga.com/en/campaigns/bem-comer-2025/"
+    pt: "https://tastebraga.com/campanhas/tardes-gulosas-2025/",
+    es: "https://tastebraga.com/campanhas/tardes-gulosas-2025/",
+    fr: "https://tastebraga.com/campanhas/tardes-gulosas-2025/",
+    en: "https://tastebraga.com/campanhas/tardes-gulosas-2025/"
   };
 
   const flagMap = { pt: 'PT', es: 'ES', fr: 'FR', en: 'EN' };
@@ -357,13 +362,15 @@
     const userLang = navigator.language ? navigator.language.slice(0,2) : 'en';
     const initialLang = availableLangs.includes(userLang) ? userLang : 'en'; // Usa 'en' como padrão se não for compatível
     setLanguage(initialLang);
-
+    
+    // LÓGICA DE ANIMAÇÃO RESTAURADA
     const cards = document.querySelectorAll('main .card');
     cards.forEach((card, i) => setTimeout(() => card.classList.add('show'), i * 150));
-
-    // Remover Bem Comer após 31 de outubro de 2025
+    
+    /* LÓGICA DE VISIBILIDADE CORRIGIDA (Desaparece a 1 de dezembro de 2025) */
     const today = new Date();
-    const endDate = new Date("2025-10-31T23:59:59");
+    // A data final é 30 de Novembro de 2025
+    const endDate = new Date("2025-11-30T23:59:59"); 
     if (today > endDate) {
       const bcCard = document.querySelector('#bc-card');
       if (bcCard) bcCard.remove();
