@@ -320,7 +320,9 @@
 
   function applyLanguage(lang) {
     // Fallback para EN (Inglês) se a tradução for desconhecida
-    const t = translations[lang] || translations['en']; 
+    const effectiveLang = translations[lang] ? lang : 'en';
+    const t = translations[effectiveLang];
+
     document.getElementById('title').textContent = t.title;
     document.getElementById('subtitle').textContent = t.subtitle;
 
@@ -336,18 +338,18 @@
 
     const bcBtn = document.getElementById("bc-btn");
     // Fallback para o link em Inglês se o link do idioma atual for desconhecido
-    if (bcBtn) bcBtn.href = bemComerLinks[lang] || bemComerLinks['en']; 
+    if (bcBtn) bcBtn.href = bemComerLinks[effectiveLang] || bemComerLinks['en'];
 
     const gnrationBtn = document.getElementById("gnration-btn");
     // Lógica específica do link gnration (PT/EN)
-    if (gnrationBtn) gnrationBtn.href = lang === 'en' ? "https://www.gnration.pt/en/ver-todos/" : "https://www.gnration.pt/ver-todos/";
+    if (gnrationBtn) gnrationBtn.href = effectiveLang === 'pt' ? "https://www.gnration.pt/ver-todos/" : "https://www.gnration.pt/en/ver-todos/";
     
     const forumBtn = document.getElementById("forum-btn");
     // Lógica específica do link forum (PT/EN)
-    if (forumBtn) forumBtn.href = lang === 'en' ? "https://forumbraga.com/Schedule/Schedule" : "https://forumbraga.com/Page/Index/85f38d62-8031-11ea-8ea3-00ff7e645b02";
+    if (forumBtn) forumBtn.href = effectiveLang === 'pt' ? "https://forumbraga.com/Page/Index/85f38d62-8031-11ea-8ea3-00ff7e645b02" : "https://forumbraga.com/Schedule/Schedule";
     
     // Atualizar o atributo lang do HTML
-    document.documentElement.lang = lang;
+    document.documentElement.lang = effectiveLang;
   }
 
   function setLanguage(lang) {
