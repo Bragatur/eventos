@@ -202,6 +202,12 @@
   </header>
 
   <main>
+    <div class="card" id="natal-card">
+      <img src="https://raw.githubusercontent.com/Bragatur/eventos/refs/heads/main/Postal-768x606.webp" alt="Braga é Natal" loading="lazy">
+      <h2>Braga é Natal</h2>
+      <p id="natal-text">Descubra toda a programação natalícia de Braga.</p>
+      <a id="natal-btn" href="https://braganatal.cm-braga.pt/" target="_blank">Ver Programa</a>
+    </div>
     <div class="card">
       <img src="https://raw.githubusercontent.com/Bragatur/eventos/refs/heads/main/agenda_cultural.jpg" alt="Agenda Cultural Braga" loading="lazy">
       <h2>Agenda Cultural de Braga</h2>
@@ -238,12 +244,6 @@
       <p>Descubra as promoções das Tardes Gulosas em Braga.</p>
       <a id="bc-btn" href="https://tastebraga.com/campanhas/tardes-gulosas-2025/" target="_blank">Saber Mais</a>
     </div>
-    <div class="card" id="natal-card">
-      <img src="https://raw.githubusercontent.com/Bragatur/eventos/refs/heads/main/Postal-768x606.webp" alt="Braga é Natal" loading="lazy">
-      <h2>Braga é Natal</h2>
-      <p id="natal-text">Descubra toda a programação natalícia de Braga.</p>
-      <a id="natal-btn" href="https://braganatal.cm-braga.pt/" target="_blank">Ver Programa</a>
-    </div>
   </main>
 
   <footer>
@@ -258,52 +258,72 @@
 <script>
   const translations = {
     pt: { title: "Eventos Culturais em Braga", subtitle: "Descubra o que está a acontecer na cidade", cards: [
+      /* [0] Braga é Natal (NOVO) */
+      { p: "Descubra toda a programação natalícia de Braga.", a: "Ver Programa" }, 
+      /* [1] Agenda Cultural */
       { p: "Atividades culturais mensais da cidade (PDF).", a: "Descarregar PDF" },
+      /* [2] Theatro Circo */
       { p: "Concertos, teatro e grandes espetáculos.", a: "Ver Agenda" },
+      /* [3] gnration */
       { p: "Música, arte contemporânea e tecnologia.", a: "Ver Agenda" },
+      /* [4] Forum Braga */
       { p: "Eventos de grande escala e espetáculos internacionais.", a: "Ver Eventos" },
+      /* [5] Espaço Vita */
       { p: "Espetáculos, congressos e eventos diversos.", a: "Ver Agenda" },
-      /* ATUALIZADO */
-      { p: "Descubra as promoções das Tardes Gulosas em Braga.", a: "Saber Mais" },
-      /* NOVO */
-      { p: "Descubra toda a programação natalícia de Braga.", a: "Ver Programa" }
+      /* [6] Tardes Gulosas */
+      { p: "Descubra as promoções das Tardes Gulosas em Braga.", a: "Saber Mais" }
     ]},
     es: { title: "Eventos Culturales en Braga", subtitle: "Descubre lo que está pasando en la ciudad", cards: [
+      /* [0] Braga é Natal (NOVO) */
+      { p: "Descubre toda la programación navideña de Braga.", a: "Ver Programa" },
+      /* [1] Agenda Cultural */
       { p: "Actividades culturales mensuales de la ciudad (PDF).", a: "Descargar PDF" },
+      /* [2] Theatro Circo */
       { p: "Conciertos, teatro y grandes espectáculos.", a: "Ver Agenda" },
+      /* [3] gnration */
       { p: "Música, arte contemporánea y tecnología.", a: "Ver Agenda" },
+      /* [4] Forum Braga */
       { p: "Eventos a gran escala y espectáculos internacionales.", a: "Ver Eventos" },
+      /* [5] Espaço Vita */
       { p: "Espectáculos, congresos y eventos diversos.", a: "Ver Agenda" },
-      /* ATUALIZADO */
-      { p: "Descubra las promociones de las 'Tardes Gulosas' en Braga.", a: "Ver programa" },
-      /* NOVO */
-      { p: "Descubre toda la programación navideña de Braga.", a: "Ver Programa" }
+      /* [6] Tardes Gulosas */
+      { p: "Descubra las promociones de las 'Tardes Gulosas' en Braga.", a: "Ver programa" }
     ]},
-    fr: { title: "Événements Culturels à Braga", subtitle: "Découvrez ce qui se passa en ville", cards: [
+    fr: { title: "Événements Culturels à Braga", subtitle: "Découvrez ce qui se passe en ville", cards: [
+      /* [0] Braga é Natal (NOVO) */
+      { p: "Découvrez toute la programmation de Noël de Braga.", a: "Voir le programme" },
+      /* [1] Agenda Cultural */
       { p: "Activités culturelles mensuelles de la ville (PDF).", a: "Télécharger le PDF" },
+      /* [2] Theatro Circo */
       { p: "Concerts, théâtre et grands spectacles.", a: "Voir l'agenda" },
+      /* [3] gnration */
       { p: "Musique, art contemporain et technologie.", a: "Voir l'agenda" },
+      /* [4] Forum Braga */
       { p: "Événements de grande envergure et spectacles internationaux.", a: "Voir les événements" },
+      /* [5] Espaço Vita */
       { p: "Spectacles, congrès et divers événements.", a: "Voir l'agenda" },
-      /* ATUALIZADO */
-      { p: "Découvrez les promotions 'Tardes Gulosas' à Braga.", a: "En savoir plus" },
-      /* NOVO */
-      { p: "Découvrez toute la programmation de Noël de Braga.", a: "Voir le programme" }
+      /* [6] Tardes Gulosas */
+      { p: "Découvrez les promotions 'Tardes Gulosas' à Braga.", a: "En savoir plus" }
     ]},
     en: { title: "Cultural Events in Braga", subtitle: "Discover what's happening in the city", cards: [
+      /* [0] Braga é Natal (NOVO) */
+      { p: "Discover all of Braga's Christmas programming.", a: "View Program" },
+      /* [1] Agenda Cultural */
       { p: "Monthly cultural activities in the city (PDF).", a: "Download PDF" },
+      /* [2] Theatro Circo */
       { p: "Concerts, theatre and major performances.", a: "View Agenda" },
+      /* [3] gnration */
       { p: "Music, contemporary art and technology.", "a": "View Agenda" },
+      /* [4] Forum Braga */
       { p: "Large-scale events and international shows.", a: "View Events" },
+      /* [5] Espaço Vita */
       { p: "Shows, conferences and various events.", a: "View Agenda" },
-      /* ATUALIZADO */
-      { p: "Discover the 'Tardes Gulosas' promotions in Braga.", a: "Learn More" },
-      /* NOVO */
-      { p: "Discover all of Braga's Christmas programming.", a: "View Program" }
+      /* [6] Tardes Gulosas */
+      { p: "Discover the 'Tardes Gulosas' promotions in Braga.", a: "Learn More" }
     ]}
   };
 
-  /* LINKS ATUALIZADOS */
+  /* LINKS (Mantidos) */
   const bemComerLinks = {
     pt: "https://tastebraga.com/campanhas/tardes-gulosas-2025/",
     es: "https://tastebraga.com/campanhas/tardes-gulosas-2025/",
@@ -333,7 +353,6 @@
   currentLang.addEventListener('click', () => { options.classList.toggle('show'); });
 
   function applyLanguage(lang) {
-    // Fallback para EN (Inglês) se a tradução for desconhecida
     const effectiveLang = translations[lang] ? lang : 'en';
     const t = translations[effectiveLang];
 
@@ -344,6 +363,7 @@
     cards.forEach((card, i) => {
       const p = card.querySelector('p');
       const a = card.querySelector('a');
+      // Verifica se o índice do cartão corresponde à tradução reordenada
       if (p && a && t.cards[i]) {
         p.textContent = t.cards[i].p;
         a.textContent = t.cards[i].a;
@@ -351,18 +371,14 @@
     });
 
     const bcBtn = document.getElementById("bc-btn");
-    // Fallback para o link em Inglês se o link do idioma atual for desconhecido
     if (bcBtn) bcBtn.href = bemComerLinks[effectiveLang] || bemComerLinks['en'];
 
     const gnrationBtn = document.getElementById("gnration-btn");
-    // Lógica específica do link gnration (PT/EN)
     if (gnrationBtn) gnrationBtn.href = effectiveLang === 'pt' ? "https://www.gnration.pt/ver-todos/" : "https://www.gnration.pt/en/ver-todos/";
     
     const forumBtn = document.getElementById("forum-btn");
-    // Lógica específica do link forum (PT/EN)
     if (forumBtn) forumBtn.href = effectiveLang === 'pt' ? "https://forumbraga.com/Page/Index/85f38d62-8031-11ea-8ea3-00ff7e645b02" : "https://forumbraga.com/Schedule/Schedule";
     
-    // Atualizar o atributo lang do HTML
     document.documentElement.lang = effectiveLang;
   }
 
@@ -374,22 +390,29 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-    // Lógica de deteção e fallback de idioma conforme solicitado
     const userLang = navigator.language ? navigator.language.slice(0,2) : 'en';
-    const initialLang = availableLangs.includes(userLang) ? userLang : 'en'; // Usa 'en' como padrão se não for compatível
+    const initialLang = availableLangs.includes(userLang) ? userLang : 'en';
     setLanguage(initialLang);
     
-    // LÓGICA DE ANIMAÇÃO RESTAURADA
+    // LÓGICA DE ANIMAÇÃO 
     const cards = document.querySelectorAll('main .card');
     cards.forEach((card, i) => setTimeout(() => card.classList.add('show'), i * 150));
     
-    /* LÓGICA DE VISIBILIDADE CORRIGIDA (Desaparece a 1 de dezembro de 2025) */
+    /* LÓGICA DE VISIBILIDADE DOS EVENTOS TEMPORÁRIOS */
     const today = new Date();
-    // A data final é 30 de Novembro de 2025
-    const endDate = new Date("2025-11-30T23:59:59"); 
-    if (today > endDate) {
-      const bcCard = document.querySelector('#bc-card');
+    
+    // Tardes Gulosas: Desaparece a 1 de dezembro de 2025
+    const bcCard = document.querySelector('#bc-card');
+    const bcEndDate = new Date("2025-11-30T23:59:59"); 
+    if (today > bcEndDate) {
       if (bcCard) bcCard.remove();
+    }
+
+    // Braga é Natal: Desaparece a 12 de janeiro de 2026 (fim a 11 de janeiro 23:59)
+    const natalCard = document.querySelector('#natal-card');
+    const natalEndDate = new Date("2026-01-11T23:59:59"); 
+    if (today > natalEndDate) {
+      if (natalCard) natalCard.remove();
     }
   });
 </script>
