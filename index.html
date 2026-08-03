@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Eventos em Braga</title>
+  
+  <link rel="preload" as="image" href="https://raw.githubusercontent.com/Bragatur/eventos/refs/heads/main/republic-square.webp" />
+  
+  <!-- Fonte Moderna: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #d32f2f;
+      --primary-hover: #e53935;
+      --bg-glass: rgba(18, 18, 20, 0.55);
+      --card-glass: rgba(255, 255, 255, 0.08);
+      --card-border: rgba(255, 255, 255, 0.12);
+      --card-hover-bg: rgba(255, 255, 255, 0.14);
+      --text-main: #ffffff;
+      --text-sub: #cbd5e1;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: url('https://raw.githubusercontent.com/Bragatur/eventos/refs/heads/main/republic-square.webp') no-repeat center center fixed;
+      background-size: cover;
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Overlay escuro com degradé para melhor leitura */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(180deg, rgba(10, 10, 12, 0.75) 0%, rgba(10, 10, 12, 0.85) 100%);
+      z-index: -1;
+    }
+
+    /* Layout do Container */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-grow: 1;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      max-width: 700px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-weight: 800;
+      font-size: 2.5rem;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    header p {
+      margin-top: 0.75rem;
+      font-weight: 500;
+      font-size: 1.1rem;
+      color: var(--text-sub);
+      line-height: 1.5;
+    }
+
+    /* Grid de Cartões */
+    main {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    /* Estilo dos Cartões */
+    .card {
+      background: var(--card-glass);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 1.75rem 1.25rem 1.5rem;
+      text-align: center;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .card.show {
+      animation: fadeSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      background: var(--card-hover-bg);
+      border-color: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Imagem do Cartão */
+    .card .img-wrapper {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      padding: 8px;
+      box-shadow: inset 0 0 12px rgba(255,255,255,0.05);
+      transition: transform 0.35s ease;
+    }
+
+    .card:hover .img-wrapper {
+      transform: scale(1.08);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    /* Conteúdo do Cartão */
+    .card h2 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      line-height: 1.4;
+      margin: 0 0 1.5rem 0;
+      color: var(--text-sub);
+      flex-grow: 1; /* Garante alinhamento dos botões no fundo */
+    }
+
+    /* Botões dos Cartões */
+    .card a {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: var(--primary);
+      color: white;
+      text-decoration: none;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.2px;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 12px rgba(211, 47, 47, 0.3);
+    }
+
+    .card a:hover {
+      background: var(--primary-hover);
+      box-shadow: 0 6px 18px rgba(229, 57, 53, 0.45);
+      transform: translateY(-1px);
+    }
+
+    /* Footer */
+    footer {
+      width: 100%;
+      max-width: 1200px;
+      text-align: center;
+      padding: 1.5rem;
+      color: #94a3b8;
+      font-size: 0.85rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: auto;
+    }
+
+    /* Animações */
+    @keyframes fadeSlideUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Seletor de Idioma Flutuante */
+    .lang-dropdown {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .lang-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: rgba(30, 30, 35, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      transition: all 0.3s ease;
+    }
+
+    .lang-icon:hover {
+      transform: scale(1.08);
+      border-color: var(--primary);
+    }
+
+    .lang-dropdown .lang-options {
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .lang-dropdown .lang-options.show {
+      display: flex;
+      animation: fadeSlide 0.25s ease forwards;
+    }
+
+    .lang-options .lang-icon {
+      width: 40px;
+      height: 40px;
+      font-size: 0.75rem;
+      background: rgba(20, 20, 25, 0.9);
+    }
+
+    @keyframes fadeSlide {
+      0% { opacity: 0; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Ajustes para ecrãs mais pequenos */
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.8rem; }
+      header p { font-size: 0.95rem; }
+      .container { padding: 1.25rem 1rem; }
+      main { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1 id="title">Eventos Culturais em Braga</h1>
+      <p id="subtitle">Descubra o que está a acontecer na cidade</p>
+    </header>
+
+    <main>
+      <div class="card" id="natal-card">
+        <div class="img-wrapper">
+          <img src="https://raw.githubusercontent.com/Bragatur/eventos/refs/heads/main/natal25.webp" alt="Braga é Natal" loading="lazy">
+        </div>
+        <h2>Braga é Natal</h2>
+        <p id="natal-text">Descubra toda a programação natalícia de Braga.</p>
+        <a id="natal-btn" href="https://braganatal.cm-braga.pt/" target="_blank">Ver Programa</a>
+      </div>
+
+      <div class="card">
+        <div class="img-wrapper">
+          <img src="https://raw.githubusercontent.com/Bragatur/eventos/refs/heads/main/agenda_cultural.jpg" alt="Agenda Cultural Braga" loading="lazy">
+        </div>
+        <h2>Agenda Cultural de Braga</h2>
+        <p id="ac-text">Atividades culturais mensais da cidade (PDF).</p>
+        <a id="ac-btn" href="https://raw.githubusercontent.com/Bragatur/eventos/main/AgendaCulturalBraga.pdf" target="_blank" rel="noopener">Descarregar PDF</a>
+      </div>
+
+      <div class="card">
+        <div class="img-wrapper">
+          <img src="https://raw.githubusercontent.com/Bragatur/eventos/refs/heads/main/theatro_circo.jpg" alt="Theatro Circo" loading="lazy">
+        </div>
+        <h2>Theatro Circo</h2>
+        <p>Concertos, teatro e grandes espetáculos.</p>
+        <a href="https://theatrocirco.com/programa/" target="_blank">Ver Agenda</a>
+      </div>
+
+      <div class="card">
+        <div class="img-wrapper">
+          <img src="https://raw.githubusercontent.com/Bragatur/eventos/refs/heads/main/gnration.jpg" alt="gnration" loading="lazy">
+        </div>
+        <h2>gnration</h2>
+        <p>Música, arte contemporânea e tecnologia.</p>
+        <a id="gnration-btn" href="https://www.gnration.pt/ver-todos/" target="_blank">Ver Agenda</a>
+      </div>
+
+      <div class="card">
+        <div class="img-wrapper">
+          <img src="https://raw.githubusercontent.com/Bragatur/eventos/refs/heads/main/forum.jpg" alt="Forum Braga" loading="lazy">
+        </div>
+        <h2>Forum Braga</h2>
+        <p>Eventos de grande escala e espetáculos internacionais.</p>
+        <a id="forum-btn" href="https://forumbraga.com/Page/Index/85f38d62-8031-11ea-8ea3-00ff7e645b02" target="_blank">Ver Eventos</a>
+      </div>
+
+      <div class="card">
+        <div class="img-wrapper">
+          <img src="https://raw.githubusercontent.com/Bragatur/eventos/refs/heads/main/espaco_vita.jpg" alt="Espaço Vita" loading="lazy">
+        </div>
+        <h2>Espaço Vita</h2>
+        <p>Espetáculos, congressos e eventos diversos.</p>
+        <a href="https://www.espacovita.pt/agenda/" target="_blank">Ver Agenda</a>
+      </div>
+
+      <div class="card" id="bc-card">
+        <div class="img-wrapper">
+          <img src="https://raw.githubusercontent.com/Bragatur/eventos/refs/heads/main/TARDES%20GULOSAS.webp" alt="Tardes Gulosas" loading="lazy">
+        </div>
+        <h2>Tardes Gulosas</h2>
+        <p>Descubra as promoções das Tardes Gulosas em Braga.</p>
+        <a id="bc-btn" href="https://tastebraga.com/campanhas/tardes-gulosas-2025/" target="_blank">Saber Mais</a>
+      </div>
+    </main>
+
+    <footer>
+      © 2025 Município de Braga. Dados públicos das entidades culturais da cidade.
+    </footer>
+  </div>
+
+  <div class="lang-dropdown">
+    <div id="current-lang" class="lang-icon">PT</div>
+    <div class="lang-options"></div>
+  </div>
+
+<script>
+  const translations = {
+    pt: { title: "Eventos Culturais em Braga", subtitle: "Descubra o que está a acontecer na cidade", cards: [
+      { p: "Descubra toda a programação natalícia de Braga.", a: "Ver Programa" }, 
+      { p: "Atividades culturais mensais da cidade (PDF).", a: "Descarregar PDF" },
+      { p: "Concertos, teatro e grandes espetáculos.", a: "Ver Agenda" },
+      { p: "Música, arte contemporânea e tecnologia.", a: "Ver Agenda" },
+      { p: "Eventos de grande escala e espetáculos internacionais.", a: "Ver Eventos" },
+      { p: "Espetáculos, congressos e eventos diversos.", a: "Ver Agenda" },
+      { p: "Descubra as promoções das Tardes Gulosas em Braga.", a: "Saber Mais" }
+    ]},
+    es: { title: "Eventos Culturales en Braga", subtitle: "Descubre lo que está pasando en la ciudad", cards: [
+      { p: "Descubre toda la programación navideña de Braga.", a: "Ver Programa" },
+      { p: "Actividades culturales mensuales de la ciudad (PDF).", a: "Descargar PDF" },
+      { p: "Conciertos, teatro y grandes espectáculos.", a: "Ver Agenda" },
+      { p: "Música, arte contemporánea y tecnología.", a: "Ver Agenda" },
+      { p: "Eventos a gran escala y espectáculos internacionales.", a: "Ver Eventos" },
+      { p: "Espectáculos, congresos y eventos diversos.", a: "Ver Agenda" },
+      { p: "Descubra las promociones de las 'Tardes Gulosas' en Braga.", a: "Ver programa" }
+    ]},
+    fr: { title: "Événements Culturels à Braga", subtitle: "Découvrez ce qui se passe en ville", cards: [
+      { p: "Découvrez toute la programmation de Noël de Braga.", a: "Voir le programme" },
+      { p: "Activités culturelles mensuelles de la ville (PDF).", a: "Télécharger le PDF" },
+      { p: "Concerts, théâtre et grands spectacles.", a: "Voir l'agenda" },
+      { p: "Musique, art contemporain et technologie.", a: "Voir l'agenda" },
+      { p: "Événements de grande envergure et spectacles internationaux.", a: "Voir les événements" },
+      { p: "Spectacles, congrès et divers événements.", a: "Voir l'agenda" },
+      { p: "Découvrez les promotions 'Tardes Gulosas' à Braga.", a: "En savoir plus" }
+    ]},
+    en: { title: "Cultural Events in Braga", subtitle: "Discover what's happening in the city", cards: [
+      { p: "Discover all of Braga's Christmas programming.", a: "View Program" },
+      { p: "Monthly cultural activities in the city (PDF).", a: "Download PDF" },
+      { p: "Concerts, theatre and major performances.", a: "View Agenda" },
+      { p: "Music, contemporary art and technology.", a: "View Agenda" },
+      { p: "Large-scale events and international shows.", a: "View Events" },
+      { p: "Shows, conferences and various events.", a: "View Agenda" },
+      { p: "Discover the 'Tardes Gulosas' promotions in Braga.", a: "Learn More" }
+    ]}
+  };
+
+  const bemComerLinks = {
+    pt: "https://tastebraga.com/campanhas/tardes-gulosas-2025/",
+    es: "https://tastebraga.com/campanhas/tardes-gulosas-2025/",
+    fr: "https://tastebraga.com/campanhas/tardes-gulosas-2025/",
+    en: "https://tastebraga.com/campanhas/tardes-gulosas-2025/"
+  };
+
+  const flagMap = { pt: 'PT', es: 'ES', fr: 'FR', en: 'EN' };
+  const availableLangs = Object.keys(flagMap);
+  const dropdown = document.querySelector('.lang-dropdown');
+  const currentLang = document.getElementById('current-lang');
+  const options = dropdown.querySelector('.lang-options');
+
+  function renderDropdown(current) {
+    options.innerHTML = '';
+    for (let lang of availableLangs) {
+      if (lang !== current) {
+        const div = document.createElement('div');
+        div.className = 'lang-icon';
+        div.textContent = flagMap[lang];
+        div.onclick = () => setLanguage(lang);
+        options.appendChild(div);
+      }
+    }
+  }
+
+  currentLang.addEventListener('click', () => { options.classList.toggle('show'); });
+
+  function applyLanguage(lang) {
+    const effectiveLang = translations[lang] ? lang : 'en';
+    const t = translations[effectiveLang];
+
+    document.getElementById('title').textContent = t.title;
+    document.getElementById('subtitle').textContent = t.subtitle;
+
+    const cards = document.querySelectorAll('main .card');
+    cards.forEach((card, i) => {
+      const p = card.querySelector('p');
+      const a = card.querySelector('a');
+      if (p && a && t.cards[i]) {
+        p.textContent = t.cards[i].p;
+        a.textContent = t.cards[i].a;
+      }
+    });
+
+    const bcBtn = document.getElementById("bc-btn");
+    if (bcBtn) bcBtn.href = bemComerLinks[effectiveLang] || bemComerLinks['en'];
+
+    const gnrationBtn = document.getElementById("gnration-btn");
+    if (gnrationBtn) gnrationBtn.href = effectiveLang === 'pt' ? "https://www.gnration.pt/ver-todos/" : "https://www.gnration.pt/en/ver-todos/";
+    
+    const forumBtn = document.getElementById("forum-btn");
+    if (forumBtn) forumBtn.href = effectiveLang === 'pt' ? "https://forumbraga.com/Page/Index/85f38d62-8031-11ea-8ea3-00ff7e645b02" : "https://forumbraga.com/Schedule/Schedule";
+    
+    document.documentElement.lang = effectiveLang;
+  }
+
+  function setLanguage(lang) {
+    currentLang.textContent = flagMap[lang];
+    renderDropdown(lang);
+    options.classList.remove('show');
+    applyLanguage(lang);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const userLang = navigator.language ? navigator.language.slice(0,2) : 'en';
+    const initialLang = availableLangs.includes(userLang) ? userLang : 'en';
+    setLanguage(initialLang);
+    
+    // Animação gradual dos cartões ao carregar
+    const cards = document.querySelectorAll('main .card');
+    cards.forEach((card, i) => setTimeout(() => card.classList.add('show'), i * 100));
+    
+    // Validação de datas de eventos temporários
+    const today = new Date();
+    
+    const bcCard = document.querySelector('#bc-card');
+    const bcEndDate = new Date("2025-11-30T23:59:59"); 
+    if (today > bcEndDate && bcCard) {
+      bcCard.remove();
+    }
+
+    const natalCard = document.querySelector('#natal-card');
+    const natalEndDate = new Date("2026-01-11T23:59:59"); 
+    if (today > natalEndDate && natalCard) {
+      natalCard.remove();
+    }
+  });
+</script>
+
+</body>
+</html>
